@@ -1,34 +1,35 @@
-import { BaseAction, actionIds } from '../actions';
+import { LooserActions} from '../actions';
 import { Looser } from '../models';
 import { RootState } from './state';
+import { handleActions } from 'redux-actions';
 
-export const looserReducer = (
-  state: RootState.LooserState = [],
-  action: BaseAction
-) => {
-  switch (action.type) {
-    case actionIds.LOOSER_UPDATE_RECEIVED:
+const initialState: RootState.LooserState = [];
+
+export const looserReducer = handleActions<RootState.LooserState, Looser>(
+  {
+    [LooserActions.Type.LOOSER_UPDATE_RECEIVED]: (state: RootState.LooserState, action: LooserActions.BaseAction) => {
       return handleLooserUpdateCompleted(state, action.payload);
-    case actionIds.REMOVE_LOOSER_REQUEST:
+    },
+    [LooserActions.Type.REMOVE_LOOSER_REQUEST]: (state, action) => {
       return handleRemoveLooser(state, action.payload);
-  }
-
-  return state;
-};
+    },
+  },
+  initialState
+);
 
 const handleRemoveLooser = (
   state: RootState.LooserState,
-  id: string
+  looserRemove: Looser
 ): RootState.LooserState => {
-  const withoutTheId = state.filter(currency => currency.id != id);
+  const withoutTheId = state.filter(looser => looser.id != looserRemove.id);
   return [...withoutTheId];
 };
 
 
 const handleLooserUpdateCompleted = (
   state: RootState.LooserState,
-  currencyUpdate: Looser
+  looserUpdate: Looser
 ): RootState.LooserState => {
-  const notUpdated = state.filter(currency => currency.id != currencyUpdate.id);
-  return [currencyUpdate, ...notUpdated];
+  const notUpdated = state.filter(looser => looser.id != looserUpdate.id);
+  return [looserUpdate, ...notUpdated];
 };

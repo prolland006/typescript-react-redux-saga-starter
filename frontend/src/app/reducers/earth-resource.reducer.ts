@@ -1,4 +1,4 @@
-import { BaseAction, actionIds } from '../actions';
+import { LooserActions } from '../actions';
 import { EarthResource } from '../models';
 
 const initialEarthResources = [
@@ -11,11 +11,11 @@ const initialEarthResources = [
 
 export const earthResourceReducer = (
   state: EarthResource[] = initialEarthResources,
-  action: BaseAction
+  action: LooserActions.BaseAction
 ) => {
   console.log(action);
   switch (action.type) {
-    case actionIds.DESTROY_NATURE_RESOURCES:
+    case LooserActions.Type.DESTROY_NATURE_RESOURCES:
       console.log('DESTROY_NATURE_RESOURCES');
       console.log(action);
       return state.map(

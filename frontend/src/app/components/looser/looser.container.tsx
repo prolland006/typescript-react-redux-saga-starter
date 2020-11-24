@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
 import { LooserComponent } from './looser.component';
-import {
-  startSocketSubscriptionAction,
-  stopSocketSubscriptionAction,
-  removeLooserRequestAction,
-} from '../../actions';
+import { LooserActions } from '../../actions';
 import { RootState } from 'app/reducers';
 
 const mapStateToProps = (state: RootState) => ({
@@ -12,9 +8,9 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  connectCurrencyUpdateSockets: () => dispatch(startSocketSubscriptionAction()),
-  disconnectCurrencyUpdateSockets: () => dispatch(stopSocketSubscriptionAction()),
-  onRemoveLooserRequest: (id: any) => dispatch(removeLooserRequestAction(id)),
+  connectCurrencyUpdateSockets: () => dispatch(LooserActions.startSocketSubscriptionAction()),
+  disconnectCurrencyUpdateSockets: () => dispatch(LooserActions.stopSocketSubscriptionAction()),
+  onRemoveLooserRequest: (id: any) => dispatch(LooserActions.removeLooserRequestAction(id)),
 });
 
 export const LooserContainer = connect(

@@ -6,7 +6,7 @@ interface Props {
   connectCurrencyUpdateSockets: () => void;
   disconnectCurrencyUpdateSockets: () => void;
   looserCollection: Looser[];
-  onRemoveLooserRequest: (id: string) => void;
+  onRemoveLooserRequest: (looser: Looser) => void;
 }
 
 export const LooserComponent: React.FunctionComponent<Props> = props => {
@@ -37,12 +37,12 @@ export const LooserComponent: React.FunctionComponent<Props> = props => {
           </tr>
         </thead>
         <tbody>
-          {looserCollection.map(currency => (
-            <tr key={currency.id}>
-              <td>{currency.employee_name}</td>
-              <td>{currency.employee_age}</td>
-              <td>{currency.employee_salary}</td>
-              <td><button className={style.button} onClick={() => onRemoveLooserRequest(currency.id)}>Fuck that shit!</button></td>
+          {looserCollection.map(looser => (
+            <tr key={looser.id}>
+              <td>{looser.employee_name}</td>
+              <td>{looser.employee_age}</td>
+              <td>{looser.employee_salary}</td>
+              <td><button className={style.button} onClick={() => onRemoveLooserRequest(looser)}>Fuck that shit!</button></td>
             </tr>
           ))}
         </tbody>

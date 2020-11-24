@@ -1,6 +1,6 @@
 import { all, fork, take, call, put, cancel } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
-import { actionIds, looserUpdateReceivedAction } from '../actions';
+import { LooserActions } from '../actions';
 
 const ioClient = require('socket.io-client');
 
@@ -29,7 +29,7 @@ function subscribe(socket: any) {
   return eventChannel(emit => {
     socket.on('currency', (message: any) => {
       console.log(message);
-      emit(looserUpdateReceivedAction(message));
+      emit(LooserActions.looserUpdateReceivedAction(message));
     });
     socket.on('disconnect', (e: any) => {
       // TODO: handle
@@ -57,13 +57,13 @@ function* flow() {
   console.log('flow');
   while (true) {
     console.log('while true');
-    yield take(actionIds.START_SOCKET_SUBSCRIPTION);
+    yield take(LooserActions.Type.START_SOCKET_SUBSCRIPTION);
     const { socket, error } = yield call(connect);
     console.log('if socket');
     if (socket) {
       console.log('connection to socket succeeded');
       const ioTask = yield fork(handleIO, socket);
-      yield take(actionIds.STOP_SOCKET_SUBSCRIPTION);
+      yield take(LooserActions.Type.STOP_SOCKET_SUBSCRIPTION);
       yield cancel(ioTask);
       socket.disconnect();
     } else {
