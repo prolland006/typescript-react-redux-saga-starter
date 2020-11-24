@@ -6,7 +6,7 @@ import { configureStore } from 'app/store';
 import { Route, Router } from 'react-router';
 import { App } from './app';
 import { LooserContainer } from 'app/components';
-import { EarthResourceContainer } from 'app/components/viewer';
+import { EarthResourceContainer } from 'app/components/resource';
 
 // prepare store
 const history = createBrowserHistory();

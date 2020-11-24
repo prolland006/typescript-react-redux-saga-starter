@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Looser } from '../../models';
+import style from './style.css';
 
 interface Props {
   connectCurrencyUpdateSockets: () => void;
@@ -41,7 +42,7 @@ export const LooserComponent: React.FunctionComponent<Props> = props => {
               <td>{currency.employee_name}</td>
               <td>{currency.employee_age}</td>
               <td>{currency.employee_salary}</td>
-              <td><button onClick={() => onRemoveLooserRequest(currency.id)}>Fuck that shit!</button></td>
+              <td><button className={style.button} onClick={() => onRemoveLooserRequest(currency.id)}>Fuck that shit!</button></td>
             </tr>
           ))}
         </tbody>
