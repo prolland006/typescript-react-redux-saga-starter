@@ -1,7 +1,8 @@
-import { LooserActions } from '../actions';
+import { ResourcesActions } from '../actions';
+import { RootState } from './state';
+import { handleActions } from 'redux-actions';
 import { EarthResource } from '../models';
-
-const initialEarthResources = [
+const initialState = [
   {id: '0', type: 'Fer', quantity: 10},
   {id: '1', type: 'Or', quantity: 3},
   {id: '2', type: 'Argent', quantity: 3},
@@ -9,19 +10,16 @@ const initialEarthResources = [
   {id: '4', type: 'Uranium', quantity: 5},
 ]
 
-export const earthResourceReducer = (
-  state: EarthResource[] = initialEarthResources,
-  action: LooserActions.BaseAction
-) => {
-  console.log(action);
-  switch (action.type) {
-    case LooserActions.Type.DESTROY_NATURE_RESOURCES:
-      console.log('DESTROY_NATURE_RESOURCES');
-      console.log(action);
-      return state.map(
-          earthResource=>(earthResource.id===action.payload.id?
-            {...earthResource,quantity: earthResource.quantity-action.payload.quantity}:earthResource)
-        )
-  }
-  return state;
-};
+export const earthResourceReducer = handleActions<RootState.EarthResourceState, EarthResource>(
+{
+  [ResourcesActions.Type.DESTROY_NATURE_RESOURCES]: (state, action) => {
+    console.log('DESTROY_NATURE_RESOURCES');
+    console.log(action);
+    return state.map(
+        earthResource=>(earthResource.id===action.payload.id?
+          {...earthResource,quantity: earthResource.quantity-action.payload.quantity}:earthResource)
+      )
+    }
+  },
+  initialState
+);

@@ -10,5 +10,5 @@ export { RootState };
 export const rootReducer = combineReducers<RootState>({
   todos: todoReducer,
   looserState: looserReducer,
-  earthResources: earthResourceReducer,
+  earthResourceState: earthResourceReducer,
 });

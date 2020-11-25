@@ -3,12 +3,12 @@ import { Looser, TodoModel, EarthResource } from 'app/models';
 export interface RootState {
   todos: RootState.TodoState;
   looserState : RootState.LooserState;
-  earthResources: EarthResource[];
+  earthResourceState: RootState.EarthResourceState;
   router?: any;
 }
 
 export namespace RootState {
   export type TodoState = TodoModel[];
   export type LooserState = Looser[];
-  export type EarthResource = EarthResource[];
+  export type EarthResourceState = EarthResource[];
 }

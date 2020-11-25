@@ -1,4 +1,4 @@
-import { LooserActions} from '../actions';
+import { LooserActions } from '../actions';
 import { Looser } from '../models';
 import { RootState } from './state';
 import { handleActions } from 'redux-actions';
@@ -7,7 +7,7 @@ const initialState: RootState.LooserState = [];
 
 export const looserReducer = handleActions<RootState.LooserState, Looser>(
   {
-    [LooserActions.Type.LOOSER_UPDATE_RECEIVED]: (state: RootState.LooserState, action: LooserActions.BaseAction) => {
+    [LooserActions.Type.LOOSER_UPDATE_RECEIVED]: (state, action) => {
       return handleLooserUpdateCompleted(state, action.payload);
     },
     [LooserActions.Type.REMOVE_LOOSER_REQUEST]: (state, action) => {
