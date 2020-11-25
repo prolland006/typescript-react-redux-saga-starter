@@ -8,6 +8,8 @@ If needed, please fork this repository and add your own that meets your requirem
 
 Ideal for creating React apps from the scratch.
 
+![react starter](https://github.com/prolland006/typescript-react-redux-saga-starter/blob/master/pic/fucking_looser.jpg)
+
 ## Contains
 
 - [x] [Typescript](https://www.typescriptlang.org/) 3.8
@@ -17,7 +19,7 @@ Ideal for creating React apps from the scratch.
 - [x] [React Router](https://github.com/ReactTraining/react-router) 5.1
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
-- [x] [redux-saga]
+- [x] [redux-saga] ()
 
 ### Build tools
 
