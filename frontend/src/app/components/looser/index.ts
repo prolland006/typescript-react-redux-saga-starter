@@ -1,1 +1,1 @@
-export * from './looser.container';
+export * from './looser.component';

@@ -3,4 +3,4 @@ export { Header } from './Header';
 export { TodoList } from './TodoList';
 export { TodoItem } from './TodoItem';
 export { TodoTextInput } from './TodoTextInput';
-export { LooserContainer } from './looser';
+export { LooserComponent } from './looser';

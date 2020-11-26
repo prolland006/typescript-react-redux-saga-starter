@@ -1,26 +1,22 @@
+import { LooserActions } from 'app/actions';
+import { RootState } from 'app/reducers';
 import * as React from 'react';
-import { Looser } from '../../models';
+import { useDispatch, useSelector } from 'react-redux';
 import style from './style.css';
 
 interface Props {
-  connectCurrencyUpdateSockets: () => void;
-  disconnectCurrencyUpdateSockets: () => void;
-  looserCollection: Looser[];
-  onRemoveLooserRequest: (looser: Looser) => void;
 }
 
 export const LooserComponent: React.FunctionComponent<Props> = props => {
-  const {
-    connectCurrencyUpdateSockets,
-    disconnectCurrencyUpdateSockets,
-    onRemoveLooserRequest,
-    looserCollection
-  } = props;
+
+  const dispatch = useDispatch();
+  const looserState = useSelector((state: RootState) => state.looserState);
+
 
   React.useEffect(() => {
-    connectCurrencyUpdateSockets();
+    dispatch(LooserActions.startSocketSubscriptionAction());
     return () => {
-      disconnectCurrencyUpdateSockets();
+      dispatch(LooserActions.stopSocketSubscriptionAction());
     };
   }, []);
 
@@ -37,12 +33,19 @@ export const LooserComponent: React.FunctionComponent<Props> = props => {
           </tr>
         </thead>
         <tbody>
-          {looserCollection.map(looser => (
+          {looserState.map(looser => (
             <tr key={looser.id}>
               <td>{looser.employee_name}</td>
               <td>{looser.employee_age}</td>
               <td>{looser.employee_salary}</td>
-              <td><button className={style.button} onClick={() => onRemoveLooserRequest(looser)}>Fuck that shit!</button></td>
+              <td>
+                <button 
+                  className={style.button} 
+                  onClick={() => dispatch(LooserActions.removeLooserRequestAction(looser.id))}
+                >
+                  Fuck that shit!
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

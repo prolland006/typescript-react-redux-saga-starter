@@ -1,25 +1,27 @@
+import { ResourcesActions } from 'app/actions';
+import { EarthResource } from 'app/models';
+import { RootState } from 'app/reducers/state';
 import * as React from 'react';
-import { EarthResource } from '../../models'
+import { useDispatch, useSelector } from 'react-redux';
 import style from './style.css';
 
 interface Props {
-  earthResource: EarthResource[];
-  removeResource: (id: string)=>void;
-  onUserConfirmGetResourceRequest: (result: boolean) => void;
 }
 
 export const EarthResourceComponent: React.FunctionComponent<Props> = props => {
-  const {earthResource, removeResource, onUserConfirmGetResourceRequest} = props;
   const [showConfirm, setShowConfirm] = React.useState(false);
+
+  const dispatch = useDispatch();
+  const earthResourceState = useSelector((state: RootState) => state.earthResourceState);
 
   const removeClicked = (id: string) => {
     setShowConfirm(true);
-    removeResource(id);
+    dispatch(ResourcesActions.removeResourceAction(id));
   }
 
   const confirmClicked = (confirm: boolean) => {
     setShowConfirm(false);
-    onUserConfirmGetResourceRequest(confirm);
+    dispatch(ResourcesActions.confirmGetResourceAction(confirm));
   }
 
   return (
@@ -32,7 +34,7 @@ export const EarthResourceComponent: React.FunctionComponent<Props> = props => {
         <th>Action</th>
       </thead>
       <tbody>
-        {earthResource.map(earthResource=>
+        {earthResourceState.map((earthResource: EarthResource)=>
           <tr><td>{earthResource.type}</td><td>{earthResource.quantity}</td><td><button className={style.button} onClick={() => removeClicked(earthResource.id)}>Get the resource</button></td></tr>
         )}
       </tbody>

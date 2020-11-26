@@ -19,7 +19,7 @@ Ideal for creating React apps from the scratch.
 - [x] [React Router](https://github.com/ReactTraining/react-router) 5.1
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
-- [x] [redux-saga] ()
+- [x] [redux-saga] (https://redux-saga.js.org/)
 
 ### Build tools
 
